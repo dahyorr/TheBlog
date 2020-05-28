@@ -38,7 +38,7 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['Title'] = "Post"
+        context['Title'] = self.model.title
         return context
 
 
@@ -48,6 +48,11 @@ class CreatePostView(LoginRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Title'] = "New Post"
+        return context
+
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     login_url = '/login/'
@@ -55,10 +60,20 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PostForm
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Title'] = "Edit: " + self.model.title
+        return context
+
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('blog:Home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Title'] = "Delete"
+        return context
 
 
 class DraftListView(LoginRequiredMixin, ListView):
@@ -69,6 +84,11 @@ class DraftListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Post.objects.filter(published_date__isnull=True).order_by('-created_date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Title'] = "Drafts"
+        return context
 
 
 @login_required
