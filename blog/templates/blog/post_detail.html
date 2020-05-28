@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+
+{% block bd_block %}
+{% if user.is_authenticated and user == post.author%}
+<div class="col-lg-4" style="height: 5vh; background-color: #DADAD9;padding: 0">
+<ul style="height: 100%;width: 100%; float: left; padding: 0">
+    <li class="detail-options "><a href="{% url 'blog:Post Edit' pk=post.pk %}"><div><i class="fas fa-pen"></i> Edit</div></a></li>
+<li class="detail-options "><a href="#"><div><i class="fas fa-info"></i> View Info</div></a></li>
+<li class="detail-options "><a href="#comments"><div><i class="fas fa-comment"></i> Comment</div></a></li>
+<li class="detail-options "><a href="{% url 'blog:Post Delete' pk=post.pk %}"><div><i class="fas fa-trash"></i> Delete</div></a></li>
+
+</ul>
+{% else %}
+    <a href="{% url 'blog:Home' %}" style="margin-left: 10px; float: left"><i class="fas fa-chevron-left fa-2x"></i></a>
+    <a class="detail-options2" href="#comments"><div><i class="fas fa-comment"></i> Comment</div></a>
+{% endif %}
+</div>
+    <div class="col-lg-8 stage" >
+    <h2 class="post-title" style="text-align: center;">{{ post.title }}</h2>
+    <p class="post-date">
+        {% if post.published_date %}
+            Date Published: {{ post.published_date }}
+            {% else %}
+            <a type="button" class="btn btn-primary" href="{% url 'blog:Post Publish' pk=post.pk %}">Publish <i class="fas fa-paper-plane"></i></a>
+        {% endif %}
+    </p>
+    <p class="post-content">{{ post.text|safe|linebreaksbr }}</p>
+    </div>
+
+    <div class="container comment-section" id="comments">
+        <h4>Comments  <a href="{% url 'blog:Post Comment' pk=post.pk %}"><button class="btn btn-dark">Add Comment</button></a></h4>
+    <ul>
+        {% for comment in post.comments.all %}
+            {% if comment.approved_comment and user != post.author%}
+                <li class="post-item" ><a href="{% url 'blog:Post Detail ' pk=post.pk %}">
+        <div>
+            <h6>{{ comment.author }}</h6>
+            <h6><strong></strong> {{ comment.text }}</h6>
+            <br><p>Comment Date: {{ comment.created_date }}</p>
+
+
+        </div>
+        </a>
+    </li>
+                {% elif user == post.author %}
+                <li class="post-item" >
+        <div >
+            <h6>{{ comment.author }}{% if not comment.approved_comment %}(Unapproved){% endif %}</h6>
+            <h6><strong></strong> {{ comment.text|safe|linebreaksbr }}</h6>
+            <p>Comment Date: {{ comment.created_date }} </p>
+        <div>
+        {% if not comment.approved_comment %}<a class="btn btn-light" style="position: relative; bottom: 10px; left: 10px; " href="{% url 'blog:Comment Approve' pk=comment.pk%}">Approve <i class="fas fa-check"></i></a>{% endif %}
+        <a class="btn btn-light" style="position: relative; bottom: 10px; left: 10px; " href="{% url 'blog:Comment Delete' pk=comment.pk%}">Remove <i class="fas fa-trash"></i></a>
+        </div>
+
+        </div>
+
+    </li>
+            {% endif %}
+        {% empty %}
+            <h4>No Comments!</h4>
+        {% endfor %}
+    </ul>
+    </div>
+
+
+{% endblock %}

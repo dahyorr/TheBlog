@@ -1,0 +1,131 @@
+.nav-color{background-color: #3ab1d5 !important;}
+.nav-font{font-family: 'Cuprum', sans-serif; font-size: 1.5em;}
+.brand-size{font-size: 1.5em;}
+.about-content{
+    background-color: red;
+    height: 100px;
+    margin: auto;
+}
+.center-stage{
+    background-color: #DADAD9;
+    margin: auto;
+    min-height: 86vh;
+
+
+}
+.center-stage-info{
+    /*background-color: red;*/
+    min-width: 10vh;
+    background-image: linear-gradient(#f63030, #9c1e1e);
+    height: 3vh;
+    margin: auto auto 5px;
+}
+.post-item {
+    width: 100%;
+    min-height: 11vh;
+    background-image: linear-gradient(#d9dada, #c6ccd7);
+    padding-left: 19px;
+    list-style: none;
+    margin-bottom: 2px;
+}
+.post-item > a{
+    color: black;
+
+}.post-item > a:hover{
+    text-decoration: none;
+
+}
+.post-item:hover{
+    width:100%;
+    min-height:11vh;
+    background-color: #d9dada;
+    padding-left: 19px;
+    list-style: none;
+    /*box-shadow: 2px 2px 4px #000000;*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 10;
+
+}
+.post-item > p{
+    position: absolute;
+
+}
+.post-items{
+    width:100%;
+    height:100%;
+
+}
+body{
+    background-color: #ede6e3;
+}
+.stage{
+    margin: 2vh auto auto;
+    background: white;
+    min-height: 83vh
+}
+.detail-options{
+    float: left;
+    list-style: none;
+    height: 100%;
+    background-image: linear-gradient(#d9dada, #8cb8d2);
+    text-align: center;
+    margin-right:1px ;
+    width:24.7%;
+
+}
+.detail-options2{
+    float: left;
+    padding-top: 6px;
+    height: 4vh;
+    background-image: linear-gradient(#d9dada, #8cb8d2);
+    text-align: center;
+    margin-right:1px ;
+    margin-left: 15px;
+    width:10%;
+
+}.detail-options2:hover{
+    float: left;
+    padding-top: 6px;
+    height: 4vh;
+    background-image: linear-gradient(#d9dada, #8cb8d2);
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-right:1px ;
+    margin-left: 15px;
+    width:10%;
+
+}
+.detail-options:hover{
+    float: left;
+    list-style: none;
+    height: 100%;
+    background-image: linear-gradient(#d9dada, #79b6d0);
+    text-align: center;
+    margin-right:1px ;
+    width:24.8%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+.detail-options > a{
+
+    width: 100%;
+    height: 100%;
+}
+.detail-options > a> div{
+    width: 100%;
+    height: 100%;
+    padding-top: 6px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+.comment-section{
+    margin-top: 20px;
+}
+.editor-textarea{
+    width:80%;
+    background-color: white;
+    height:50vh;
+}

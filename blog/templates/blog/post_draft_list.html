@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block bd_block %}
+
+<div class="col-lg-11 center-stage-info"><h5><strong>Drafts</strong></h5></div>
+<div class="col-lg-11 center-stage" style="padding: 0;">
+<ul class="post-items" style="padding: 0">
+
+
+{% for post in post_list%}
+    {% if post.author == user %}
+    <li class="post-item" ><a href="{% url 'blog:Post Detail' pk=post.pk %}">
+        <div>
+            <h6>Title: {{ post.title }}</h6>
+            <p>{{ post.text|truncatechars:100|safe }}<br><strong>Date Created:</strong> {{ post.created_date }}
+
+        </div>
+        </a>
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>
+</div>
+
+
+
+{% endblock %}

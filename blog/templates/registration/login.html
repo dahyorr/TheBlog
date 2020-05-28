@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block bd_block %}
+
+    <div class="col-lg-3">
+    <h3>Login</h3>
+    {% if form.errors %}
+        <P>Invalid Username or password</P>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn btn-primary" type="submit" value="Login">
+        <input name="next" type="hidden" value="{{ next }}">
+    </form>
+    </div>
+
+{% endblock %}
